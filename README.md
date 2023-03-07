@@ -8,7 +8,3 @@ Hello
 Midterm Project for Advanced Interactive Prototyping
 
 Cloud Lamp with Button
-
-This project started with the restriction of using digital analog input and output.
-
-I decided to use 
