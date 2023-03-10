@@ -17,6 +17,7 @@ having one led strip for each acrylic panel
 
 With the constraints of using analog and digital in/out put,
 the final design was made to a cloud lamp with button.
+![sketch](https://github.com/robinkeum/SP23_AIP_Keum/blob/main/Image/sketch.jpg "photo_of_sketch")
 
 Intended for users who prefer having a lamp on during night,
 the light sensor on the lamp detects the brightness level of the environment.
@@ -29,6 +30,7 @@ and the system starts when the atom board's default button is pressed
 and turns off when the button is pressed again.
 
 
+![mockup](https://github.com/robinkeum/SP23_AIP_Keum/blob/main/Image/mockup.jpg "photo_of_mockup")
 The physical mock up of the cloud lamp was designed using MDF wood and Acrylic board,
 prepared by laser cut, and designed to leave space on the bottom for the led strip
 and the button to be pressed
