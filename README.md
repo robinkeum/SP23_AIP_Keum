@@ -1,3 +1,6 @@
+git config --global user.email "jkeum@inside.artcenter.edu"
+git config --global user.name "robinkeum"
+
 # SP23_AIP_Keum
 ACCD spring 23 Advanced Interactive Prototyping Repo - Robin Keum
 ## Midterm Documentation
@@ -39,4 +42,21 @@ understanding basics using and understanding sensors, digital outputs,
 and creating system states but I am happy with the outcome of this lamp project.
 
 
+##FINAL DOCUMENTATION
+ Video can be found in google drive 
+ [drive](https://drive.google.com/drive/folders/1dVsFapkpwBK-gSAbKA4YA6HCj-IvOEPN?usp=sharing)
 
+Final Project for Advanced Interactive Prototyping
+
+
+# Smart Home system 
+## Project Summary
+This project is a smart home system mockup using different sensors for input and led light as an output
+
+It's a creative light experience for the house model, using different system states.
+When the button is pressed to turn on the system, light sensor detects the brightness level near by through the roof window, and if it is bright the led light system of the house gets dimmer and if the surrounding is dark it gets brighter, automatically controlling the lighting environment. 
+
+When the button is pressed for the second time, the system mode changes to home security mode where it checks if there are anything in the house using PIR sensor, and if the sensor detection is true, the light turns on to be bright red color with can be visible from even outside the house model and an email gets sent using IFTTT and webhooks to alert the user that there was a movement detected in the house.
+
+![home model](https://github.com/robinkeum/SP23_AIP_Keum/blob/main/Image/finalfrontviewwithnikita.jpg "finalfrontviewwithnikita")
+![light sensor](https://github.com/robinkeum/SP23_AIP_Keum/blob/main/Image/fianltopview.jpg "finaltopview")
