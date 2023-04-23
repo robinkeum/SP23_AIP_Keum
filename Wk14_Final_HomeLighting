@@ -1,0 +1,115 @@
+from m5stack import *
+from easyIO import *
+from machine import Pin, ADC
+from time import *
+from neopixel import NeoPixel
+import wifiCfg  # wifi configuration library
+
+# pir motion
+pir_sensor_IN = Pin(33, Pin.IN)   # configure input on pin G33 (white wire)
+# light output
+neopixel_pin = Pin(25, Pin.OUT)  # configure output on pin G25 (neopixel strip)
+neopixel_strip = NeoPixel(neopixel_pin, 25)  # create NeoPixel object with 25 pixels
+# change arguments below to connect to the WiFi network, such as 'ACCD':
+wifiCfg.doConnect('ACCD', 'tink1930')  
+
+button_IN = Pin(23, Pin.IN)  # configure input on pin G32 (atom matrix display button)
+system_mode = 0
+button_low_prev = 1
+is_email_sent = False
+send_email = False
+
+analog_pin = Pin(32, Pin.IN)  # configure input on pin G32 (white wire)
+adc = ADC(analog_pin)  # create analog-to-digital converter (ADC) input
+adc.atten(ADC.ATTN_11DB)  # set 11dB attenuation (2.45V range)
+
+# map an input value (v_in) between min/max ranges: (copy from light Sensor)
+def map_value(in_val, in_min, in_max, out_min, out_max):
+    v = out_min + (in_val - in_min) * (out_max - out_min) / (in_max - in_min)
+    if (v < out_min): 
+        v = out_min 
+    elif (v > out_max): 
+        v = out_max
+    return int(v)
+
+print('start')
+
+# check WiFi connection status:
+if wifiCfg.wlan_sta.isconnected():
+    print('connected to WiFi network..')
+
+while True:
+    # pir. button , light
+    pir_sensor_val = pir_sensor_IN.value()
+    button_val = button_IN.value()
+    
+    analog_val = adc.read()  # read 12-bit analog value (0 - 4095 range)
+
+
+    # if system mode ~~ then diff sensors turn on
+    if system_mode == 2:
+        print("PIR: " + str(pir_sensor_val))
+        if (send_email == True and not is_email_sent):
+            # WEBHOOK
+            try:
+            # post http request to ifttt:
+                req = urequests.request(method='POST', url='http://maker.ifttt.com/trigger/PIR_Sensor/with/key/dhVpcfxqcUTIqTZXa1Sn6R',json={'value_name':'value'}, headers={'Content-Type':'application/json'})
+                print('success!')
+                is_email_sent = True
+                send_email = False
+            except:
+                print('fail..')
+            sleep_ms(500)
+        for pixel_index in range(25):
+            if(pir_sensor_val  == 1):
+                neopixel_strip[pixel_index] = (255, 0, 0)
+                neopixel_strip.write()
+                send_email = True
+            else:
+                neopixel_strip[pixel_index] = (0, 0, 0)
+                neopixel_strip.write()
+        # neopixel_strip.write()  # write color data to neopixels
+    elif system_mode == 1:
+        # change map to 255 -> light
+        analog_val_8bit = map_value(analog_val, in_min = 0, in_max = 4095, out_min = 0, out_max = 255)
+        # analog_val_25 = map_value(analog_val, 0, 4095, out_min = 0, out_max = 25)
+        # print(analog_val_25)
+        analog_val_255 = map_value(analog_val, 0, 4095, out_min = 0, out_max = 255)
+        print(analog_val_255)
+        
+        for pixel_index in range(25):
+            neopixel_strip[pixel_index] = (analog_val_255, analog_val_255, analog_val_255)
+        neopixel_strip.write()  # write color data to neopixels
+
+    elif system_mode == 0:
+        for pixel_index in range(25):
+            neopixel_strip[pixel_index] = (0, 0, 0)
+        neopixel_strip.write()  # write color data to neopixels
+
+    # Making Button mode
+    # button_pin is low and last time button_pin was not on
+    # Start with button val 0 -> 1
+    if button_val == 0 and button_low_prev != 0:  
+        if system_mode == 0:
+            system_mode = 1
+            # button val 1 -> 2
+        elif system_mode == 1:
+            system_mode = 2
+            # button val anything else -> 0
+        else:
+            system_mode = 0
+        # System mode print
+        if system_mode == 0:
+            print("SYSTEM OFF")
+            is_email_sent = False
+        elif system_mode == 1:
+            print("SYSTEM HOME")
+        else:
+            print("SYSTEM GUARD")
+
+
+
+    # Save value for next time
+    button_low_prev = button_val
+
+    sleep_ms(100)
