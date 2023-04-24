@@ -51,7 +51,7 @@ adc.atten(ADC.ATTN_11DB)  # set 11dB attenuation (2.45V range)
 
 ## Software
 
-Used IFTTT and webhooks to send email once PIR sensor detects movement
+Used IFTTT and webhooks to send email once PIR sensor detects movement to alert the user that there was a movement detected in the house when they were not at home.
 
 '''
 
@@ -72,15 +72,25 @@ if system_mode == 2:
 '''
 
 
-![ifttt](https://github.com/robinkeum/SP23_AIP_Keum/blob/main/Image/ifttt.jpg "screenshot")
+![ifttt](https://github.com/robinkeum/SP23_AIP_Keum/blob/main/Image/ifttt.png "screenshot")
 
 ## Integrations
 
-Include a link to and/or screenshots of other functional components of your project, like Adafruit IO feeds, dashboards, IFTTT applets, etc. In general, think of your audience as someone new trying to learn how to make your project and make sure to cover anything helpful to explain the functional parts of it.
+
+![Fritzing](https://github.com/robinkeum/SP23_AIP_Keum/blob/main/Image/Fritzing.png "Wires")
 
 ## Enclosure / Mechanical Design
 
-Explain how you made the enclosure or any other physical or mechanical aspects of your project with photos, screenshots of relevant files such as laser-cut patterns, 3D models, etc. (it’s great if you’re willing to share the editable source files too!)
+The physical model was created using laser cut with MDF and designed on Adobe Illustrator
+The wires were not enclosed because it was not necessary however it was added inside the physical model to demonstrate the usecase.
+
+
+![laser1](https://github.com/robinkeum/SP23_AIP_Keum/blob/main/Image/lasercutpattern.png "screenshotoflaser")
+
+![laser2](https://github.com/robinkeum/SP23_AIP_Keum/blob/main/Image/lasercutpattern2.png "screenshotoflaser2")
+
+![laser3](https://github.com/robinkeum/SP23_AIP_Keum/blob/main/Image/lasercutpattern3.png "screenshotoflaser3")
+
 
 ## Project outcome
 
