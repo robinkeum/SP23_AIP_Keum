@@ -71,6 +71,9 @@ if system_mode == 2:
             
 '''
 
+
+![ifttt](https://github.com/robinkeum/SP23_AIP_Keum/blob/main/Image/ifttt.jpg "screenshot")
+
 ## Integrations
 
 Include a link to and/or screenshots of other functional components of your project, like Adafruit IO feeds, dashboards, IFTTT applets, etc. In general, think of your audience as someone new trying to learn how to make your project and make sure to cover anything helpful to explain the functional parts of it.
