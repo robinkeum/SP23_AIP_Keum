@@ -1,6 +1,7 @@
 # Final documentation
 ## Smart Home system
 
+
 Project Summary
 
 This project is a smart home system mockup using different sensors for input and led light as an output
@@ -27,6 +28,7 @@ Using Atom matrix and PIR sensor, light sensor, this project shows the output us
 
 
 ```
+
 # pir motion
 pir_sensor_IN = Pin(33, Pin.IN)   # configure input on pin G33 (white wire)
 # light output
@@ -52,6 +54,7 @@ adc.atten(ADC.ATTN_11DB)  # set 11dB attenuation (2.45V range)
 Used IFTTT and webhooks to send email once PIR sensor detects movement
 
 '''
+
 if system_mode == 2:
         print("PIR: " + str(pir_sensor_val))
         if (send_email == True and not is_email_sent):
@@ -82,6 +85,10 @@ It's a creative light experience for the house model, using different system sta
 
 When the button is pressed for the second time, the system mode changes to home security mode where it checks if there are anything in the house using PIR sensor, and if the sensor detection is true, the light turns on to be bright red color with can be visible from even outside the house model and an email gets sent using IFTTT and webhooks to alert the user that there was a movement detected in the house.
 
+## Video Documentation
+ Video can be found in google drive 
+ [drive](https://drive.google.com/drive/folders/1dVsFapkpwBK-gSAbKA4YA6HCj-IvOEPN?usp=sharing)
+ 
 ## Conclusion
 
 This project was a combination of every small projects I worked on through this entire term. Starting with the security system using led lights with the creative button challenge. Midterm lighting system also helped me bring this final project to life by getting the practice using led strip as an output. The final system works as a smart lighting system for the house and I am very happy at the fact that all of the skills I learned throught this entire term was put to use and without too much of technical difficulty, was able to show a demo during the presentation. IFTTT and webhooks email was challenging but the overall project turned out great.
